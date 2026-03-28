@@ -14,11 +14,21 @@ const userSchema = new mongoose.Schema({
         lowercase : true,
         trim : true
     },
-    password : {
-        type : String,
-        required : true,
-        minlength : 6
-    },
+    password: {
+    type: String,
+    minlength: 6
+ 
+},
+
+googleId: {
+    type: String,
+    default: null
+},
+    role: {
+  type: String,
+  enum: ['user', 'admin'],
+  default: 'user'
+}
 },
 {timestamps : true});
 

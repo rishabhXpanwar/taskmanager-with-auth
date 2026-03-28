@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap");
+
+:root {
+  --bg: #f4f6f3;
+  --bg-soft: #eef2ed;
+  --surface: #ffffff;
+  --surface-muted: #f8faf7;
+  --text: #1f2b24;
+  --text-muted: #5c6b62;
+  --line: #d8e1d9;
+  --primary: #2f6b52;
+  --primary-soft: #d8e8df;
+  --danger: #9c3f42;
+  --shadow-soft: 0 10px 30px rgba(22, 39, 30, 0.08);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "DM Sans", "Trebuchet MS", "Verdana", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 10%, #edf4ef 0%, transparent 45%),
+    radial-gradient(circle at 88% 2%, #e6efe8 0%, transparent 42%),
+    var(--bg);
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Newsreader", "Georgia", serif;
+  color: #18231d;
+  letter-spacing: 0.2px;
+  margin: 0 0 12px;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 3.7vw, 2.8rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.45rem, 2.6vw, 2rem);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.route-shell {
+  width: min(980px, 92vw);
+  margin: 0 auto;
+  padding: 26px 0 40px;
+}
+
+.page-shell {
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .route-shell {
+    width: min(980px, 94vw);
+    padding: 18px 0 28px;
+  }
+}

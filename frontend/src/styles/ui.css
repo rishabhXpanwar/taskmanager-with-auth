@@ -1,0 +1,384 @@
+.navbar {
+  width: min(980px, 92vw);
+  margin: 16px auto 0;
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(6px);
+}
+
+.navbar h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.navbar-links a,
+.navbar-links button {
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  padding: 8px 14px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navbar-links a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar-links a:hover,
+.navbar-links button:hover {
+  border-color: #bfd0c4;
+  background: var(--surface-muted);
+  text-decoration: none;
+}
+
+.landing-card,
+.auth-card,
+.dashboard,
+.admin-dashboard {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 26px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.landing-card p {
+  margin: 0 auto 20px;
+  max-width: 530px;
+}
+
+.landing-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.landing-hero {
+  margin-top: 22px;
+}
+
+.landing-hero-card {
+  text-align: center;
+}
+
+.landing-cta {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.landing-section {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  padding: 18px;
+}
+
+.landing-section h3 {
+  margin-bottom: 12px;
+}
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.landing-feature-card,
+.landing-step-card {
+  border: 1px solid #dce6de;
+  border-radius: var(--radius-md);
+  background: #fafcf9;
+  padding: 12px;
+}
+
+.landing-feature-card h4 {
+  margin: 0 0 6px;
+  color: #1b2a20;
+  font-size: 1rem;
+}
+
+.landing-feature-card p,
+.landing-step-card p {
+  margin: 0;
+}
+
+.landing-step-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.landing-step-card span {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.landing-note p {
+  margin: 0;
+}
+
+.landing-footer {
+  width: min(760px, 100%);
+  margin: 2px auto 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px 20px;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.landing-footer p {
+  margin: 0;
+}
+
+.landing-card button,
+.auth-card button,
+.dashboard button,
+.admin-dashboard button {
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 9px 15px;
+  background: var(--primary);
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.landing-card button + button {
+  margin-left: 10px;
+}
+
+.landing-card button:hover,
+.auth-card button:hover,
+.dashboard button:hover,
+.admin-dashboard button:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.auth-shell .auth-card {
+  width: min(470px, 100%);
+  margin-top: 0;
+}
+
+.auth-card h2 {
+  margin-bottom: 18px;
+}
+
+.auth-card input {
+  width: min(360px, 90%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  background: #fcfdfc;
+}
+
+.auth-card > div {
+  display: inline-block;
+}
+
+.auth-card p {
+  margin-top: 16px;
+}
+
+.dashboard,
+.admin-dashboard {
+  text-align: left;
+}
+
+.dashboard > button {
+  margin-bottom: 14px;
+}
+
+.dashboard hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 16px 0;
+}
+
+.dashboard-panel {
+  border-radius: var(--radius-md);
+  border: 1px solid #e3eae4;
+  background: #fafcf9;
+  padding: 14px;
+}
+
+.dashboard-panel h3 {
+  margin-bottom: 10px;
+}
+
+.dashboard-panel input,
+.dashboard-panel select {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 9px 10px;
+  margin: 0 8px 8px 0;
+  background: #ffffff;
+  min-width: 170px;
+}
+
+.task-card,
+.admin-user-card {
+  border: 1px solid #dce6de;
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.task-card p,
+.admin-user-card p {
+  margin-bottom: 10px;
+}
+
+.task-card select {
+  margin-right: 8px;
+}
+
+.task-card button {
+  background: var(--danger);
+}
+
+.admin-user-card button + button {
+  margin-left: 8px;
+  background: var(--danger);
+}
+
+.admin-section {
+  margin-top: 18px;
+  border: 1px solid #e3eae4;
+  border-radius: var(--radius-md);
+  background: #fafcf9;
+  padding: 14px;
+}
+
+.admin-section h3 {
+  margin-bottom: 10px;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-actions button:last-child,
+.admin-task-card button {
+  background: var(--danger);
+}
+
+.admin-task-card {
+  border: 1px solid #dce6de;
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.admin-task-card p {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    width: min(980px, 94vw);
+    padding: 10px 12px !important;
+  }
+
+  .navbar h3 {
+    font-size: 1.03rem;
+  }
+
+  .navbar-links {
+    gap: 6px;
+  }
+
+  .navbar-links a,
+  .navbar-links button {
+    padding: 7px 10px;
+    font-size: 0.84rem;
+  }
+
+  .landing-card,
+  .auth-card,
+  .dashboard,
+  .admin-dashboard {
+    padding: 18px;
+  }
+
+  .landing-card button {
+    width: 46%;
+    margin: 8px 2% 0;
+  }
+
+  .landing-hero {
+    margin-top: 12px;
+  }
+
+  .landing-cta {
+    flex-direction: column;
+  }
+
+  .landing-cta button {
+    width: 100%;
+    margin: 0 0 8px;
+  }
+
+  .landing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-footer {
+    flex-direction: column;
+    padding-bottom: 8px;
+  }
+
+  .dashboard-panel input,
+  .dashboard-panel select,
+  .dashboard-panel button,
+  .task-card select,
+  .task-card button,
+  .admin-user-card button,
+  .admin-actions button,
+  .admin-task-card button {
+    width: 100%;
+    margin: 0 0 8px;
+  }
+
+  .admin-user-card button + button {
+    margin-left: 0;
+  }
+}

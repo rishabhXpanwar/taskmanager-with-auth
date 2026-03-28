@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 
-module.exports = function (req,res,next) {
+module.exports = async function (req,res,next) {
 
     // get the authorization header
     const authheader = req.header('Authorization');
@@ -19,7 +20,7 @@ module.exports = function (req,res,next) {
 
     try{
         const decoded = jwt.verify(token , process.env.JWT_SECRET);
-        req.user = {id : decoded.userId};
+        req.user = await User.findById(decoded.userId).select('-password');
         next();
     }
     catch(err)
