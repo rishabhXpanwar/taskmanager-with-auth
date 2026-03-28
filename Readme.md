@@ -1,156 +1,307 @@
-Task Manager with Authentication (Node.js + MongoDB)
+# Task Manager with Authentication
 
-A full-featured Task Management API built using Node.js, Express, and MongoDB, featuring JWT authentication, task CRUD operations, and role-based route protection.
+A full-stack Task Management application built with a **Node.js + Express + MongoDB** backend and a **React + Vite** frontend. It features JWT authentication, Google OAuth login, role-based access control (RBAC), task CRUD with filtering, Swagger API documentation, and an Admin dashboard.
 
-🚀 Features
+---
 
-👤 User registration & login (JWT based)
+## 🚀 Features
 
-🔐 Protected routes for authenticated users
+- 👤 User registration & login (JWT-based)
+- 🔑 Google OAuth login/register
+- 🔐 Protected routes for authenticated users
+- 🛡️ Role-based access control — `user` and `admin` roles
+- 🧾 Create, read, update, and delete tasks
+- 🔎 Filter tasks by status, priority, or search by title/description
+- 📅 Task due dates and completion timestamps
+- 🧑‍💼 Admin dashboard — manage users, roles, and all tasks
+- 📖 Swagger UI API documentation at `/api-docs`
+- 🧠 Input validation using `express-validator`
+- 💾 MongoDB with Mongoose
+- ⚙️ Environment config with `dotenv`
+- 🌐 CORS support for frontend–backend communication
+- 🪶 Clean modular code structure (frontend & backend separated)
 
-🧾 Create, update, delete, and view tasks
+---
 
-🧠 Input validation using express-validator
+## 🧰 Tech Stack
 
-💾 MongoDB database connection with Mongoose
+| Layer | Technology |
+|---|---|
+| Backend | Node.js, Express.js v5 |
+| Database | MongoDB (Mongoose) |
+| Authentication | JWT, bcryptjs, Google OAuth (`google-auth-library`) |
+| Validation | express-validator |
+| API Docs | Swagger (swagger-jsdoc + swagger-ui-express) |
+| Frontend | React 19, Vite, React Router v7 |
+| Google OAuth (FE) | @react-oauth/google |
+| HTTP Client | Axios |
+| Environment Config | dotenv |
 
-⚙️ Environment variables with dotenv
+---
 
-🪶 Clean folder structure and modular code
+## 📁 Folder Structure
 
-🧰 Tech Stack
+```
+taskmanager-with-auth/
+│
+├── backend/
+│   ├── config/
+│   │   └── db.js
+│   ├── controllers/
+│   │   ├── authcontroller.js
+│   │   ├── taskcontroller.js
+│   │   └── adminController.js
+│   ├── middleware/
+│   │   ├── auth.js
+│   │   ├── roleMiddleware.js
+│   │   └── errorhandler.js
+│   ├── models/
+│   │   ├── user.js
+│   │   └── tasks.js
+│   ├── routes/
+│   │   ├── authroutes.js
+│   │   ├── taskroutes.js
+│   │   └── adminRoutes.js
+│   ├── seed.js
+│   ├── swagger.js
+│   ├── server.js
+│   ├── .env
+│   ├── .gitignore
+│   └── package.json
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── TaskForm.jsx
+│   │   │   └── TaskList.jsx
+│   │   ├── pages/
+│   │   │   ├── Landing.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── UserDashboard.jsx
+│   │   │   └── AdminDashboard.jsx
+│   │   ├── styles/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── index.html
+│   ├── vite.config.js
+│   ├── eslint.config.js
+│   └── package.json
+│
+├── LICENSE
+└── Readme.md
+```
 
-Backend: Node.js, Express.js
+---
 
-Database: MongoDB (Mongoose)
+## ⚙️ Installation & Setup
 
-Authentication: JWT, bcrypt
+### Prerequisites
+- Node.js (v18+)
+- MongoDB (local or Atlas)
 
-Validation: express-validator
+---
 
-Environment Config: dotenv
+### 1️⃣ Clone the repository
 
-⚙️ Installation & Setup : 
-
-1️⃣ Clone this repository
+```bash
 git clone https://github.com/rishabhXpanwar/taskmanager-with-auth.git
-
-2️⃣ Navigate into the project directory
 cd taskmanager-with-auth
+```
 
-3️⃣ Install dependencies
+---
+
+### 2️⃣ Backend Setup
+
+```bash
+cd backend
 npm install
+```
 
-4️⃣ Create a .env file in the root directory and add:
-PORT=3000
-MONGO_URI=mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.8
-JWT_SECRET=rishabh12345
+Create a `.env` file inside the `backend/` directory:
+
+```env
+port=3000
+mongoUri=mongodb://127.0.0.1:27017/taskmanager
+JWT_SECRET=your_jwt_secret_here
 JWT_EXPIRES_IN=7d
+GOOGLE_CLIENT_ID=your_google_client_id_here
+```
 
-5️⃣ Start the server
-npm start or npm run dev
+Start the backend server:
 
+```bash
+npm start        # production
+npm run dev      # development (nodemon)
+```
 
-Server will start at 👉 http://localhost:3000
+Backend will be running at 👉 **http://localhost:3000**
 
-API Endpoints
-🔹 Auth Routes
-➤ Register User
+Swagger API docs available at 👉 **http://localhost:3000/api-docs**
 
-POST /api/auth/register
+---
 
-Body Example:
+### 3️⃣ Frontend Setup
 
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend will be running at 👉 **http://localhost:5173**
+
+---
+
+## 📖 API Endpoints
+
+All routes are prefixed with `/api/v1`.
+
+### 🔹 Auth Routes
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/api/v1/auth/register` | Register a new user | No |
+| POST | `/api/v1/auth/login` | Login with email & password | No |
+| POST | `/api/v1/auth/google` | Login / register with Google | No |
+| GET | `/api/v1/auth/me` | Get logged-in user's profile | ✅ JWT |
+
+#### Register — Body Example
+
+```json
 {
-  "username": "rishabh",
+  "name": "Rishabh",
   "email": "rishabh@example.com",
   "password": "123456"
 }
+```
 
-➤ Login User
+#### Login — Body Example
 
-POST /api/auth/login
-
-Body Example:
-
+```json
 {
   "email": "rishabh@example.com",
   "password": "123456"
 }
+```
 
+#### Response Example
 
-Response Example:
-
+```json
 {
   "token": "your_jwt_token"
 }
+```
 
-🔹 Task Routes
+#### Google Auth — Body Example
 
-(All below routes are protected — require JWT token in headers.)
+```json
+{
+  "credential": "<google_id_token_from_frontend>"
+}
+```
 
-➤ Create Task
+---
 
-POST /api/tasks
+### 🔹 Task Routes
 
+> All task routes require a valid JWT token in the `Authorization: Bearer <token>` header.
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/tasks` | Get all tasks for the logged-in user |
+| POST | `/api/v1/tasks` | Create a new task |
+| GET | `/api/v1/tasks/:id` | Get a specific task by ID |
+| PUT | `/api/v1/tasks/:id` | Update a task |
+| DELETE | `/api/v1/tasks/:id` | Delete a task |
+
+#### Query Parameters for GET `/api/v1/tasks`
+
+| Param | Type | Description |
+|-------|------|-------------|
+| `status` | `todo` \| `in progress` \| `done` | Filter by status |
+| `priority` | `low` \| `medium` \| `high` | Filter by priority |
+| `q` | string | Search in title or description |
+
+#### Create Task — Body Example
+
+```json
 {
   "title": "Finish project",
+  "description": "Complete the final report",
   "status": "todo",
-  "priority": "high"
+  "priority": "high",
+  "dueDate": "2025-12-31"
 }
+```
 
-➤ Get All Tasks
+#### Update Task — Body Example
 
-GET /api/tasks
-
-➤ Get Task by ID
-
-GET /api/tasks/:id
-
-➤ Update Task
-
-PUT /api/tasks/:id
-
+```json
 {
   "status": "in progress",
   "priority": "medium"
 }
+```
 
-➤ Delete Task
+---
 
-DELETE /api/tasks/:id
+### 🔹 Admin Routes
 
-🧠 Folder Structure
-taskmanager-with-auth/
-│
-├── controllers/
-│   ├── authController.js
-│   └── taskController.js
-│
-├── middleware/
-│   └── auth.js
-│
-├── models/
-│   ├── User.js
-│   └── Task.js
-│
-├── routes/
-│   ├── authRoutes.js
-│   └── taskRoutes.js
-│
-├── .env
-├── .gitignore
-├── package.json
-├── server.js
-└── README.md
+> All admin routes require a valid JWT token **and** the `admin` role.
 
-🧑‍💻 Author
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/admin/users` | Get all users |
+| GET | `/api/v1/admin/users/:id` | Get a user and their tasks |
+| PATCH | `/api/v1/admin/users/:id/role` | Update a user's role |
+| DELETE | `/api/v1/admin/users/:id` | Delete a user and all their tasks |
+| GET | `/api/v1/admin/tasks` | Get all tasks from all users |
+| DELETE | `/api/v1/admin/tasks/:id` | Delete any task |
 
-Rishabh Panwar
+#### Update Role — Body Example
 
+```json
+{
+  "role": "admin"
+}
+```
 
+---
 
- License
+## 🛡️ Role-Based Access Control
 
-This project is licensed under the MIT License.
+| Role | Capabilities |
+|------|-------------|
+| `user` | Manage their own tasks only |
+| `admin` | Access admin dashboard, manage all users & tasks, update roles |
+
+---
+
+## 🌐 Frontend Routes
+
+| Path | Page | Access |
+|------|------|--------|
+| `/` | Landing page | Public |
+| `/login` | Login page | Public |
+| `/register` | Register page | Public |
+| `/dashboard` | User Dashboard or Admin Dashboard | Authenticated users only |
+
+The `/dashboard` route automatically redirects to the **Admin Dashboard** if the logged-in user has the `admin` role, and to the **User Dashboard** otherwise.
+
+---
+
+## 🧑‍💻 Author
+
+**Rishabh Panwar**
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
 Feel free to use and modify it as needed.
