@@ -2,7 +2,7 @@ require ('dotenv').config();
 
 const setupSwagger = require('./swagger');
 const express = require("express");
-const cors = require("cors"); // ✅ added
+const cors = require("cors"); //  added
 const connectDB = require("./config/db");
 const authRoutes = require('./routes/authroutes');
 const taskRoutes = require('./routes/taskroutes');
@@ -19,7 +19,7 @@ app.use(express.json());
 
 //  CORS middleware
 app.use(cors({
-    origin: "*",
+    origin: process.env.CLIENT_URL,
     credentials: true
 }));
 
